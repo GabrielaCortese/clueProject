@@ -181,9 +181,11 @@ public class clueProject
 			
 			public static void userChoice()
 			{
+			
 			System.out.println("\nPlease enter the number of the person you suspect, the number of the location\nin which you suspect the crime was committed, and the number of the weapon\nyou suspect was used, separated by commas.");
 			Scanner userInput = new Scanner(System.in);
 			String userDecision = userInput.nextLine();	
+			
 		
 //			if (allTogether.get(i).equals() || allTogether.get(i).equals(confidentialPerson) || allTogether.get(i).equals(confidentialWeapon))
 //				{
