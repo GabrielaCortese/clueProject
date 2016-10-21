@@ -30,6 +30,7 @@ public class clueProject
 			deal();
 			playerOptions();
 			getCards();
+			userChoice();
 			//confidentialFileReveal();
 			}
 			
@@ -54,14 +55,11 @@ public class clueProject
 			{
 					
 			mullenLocations.add(new String("C-1"));
-			mullenLocations.add(new String("Mr. Welling's office"));
 			mullenLocations.add(new String("Spiessbach's classroom"));
 			mullenLocations.add(new String("the baseball dugout"));
-			mullenLocations.add(new String("the Rilko"));
-			mullenLocations.add(new String("that shed next to the soccer fields"));
+			mullenLocations.add(new String("the soccer shed"));
 			mullenLocations.add(new String("the pond"));
 			mullenLocations.add(new String("the cage"));
-			mullenLocations.add(new String("the wrestling room"));
 			
 			Collections.shuffle(mullenLocations);
 			
@@ -99,14 +97,11 @@ public class clueProject
 			allTogether.add(new String("Expo marker"));
 			allTogether.add(new String("gaggle of geese"));	
 			allTogether.add(new String("C-1"));
-			allTogether.add(new String("Mr. Welling's office"));
 			allTogether.add(new String("Spiessbach's classroom"));
 			allTogether.add(new String("the baseball dugout"));
-			allTogether.add(new String("the Rilko"));
-			allTogether.add(new String("that shed next to the soccer fields"));
+			allTogether.add(new String("the soccer shed"));
 			allTogether.add(new String("the pond"));
 			allTogether.add(new String("the cage"));
-			allTogether.add(new String("the wrestling room"));
 			allTogether.add(new String("Joseph"));
 			allTogether.add(new String("Devon"));
 			allTogether.add(new String("Mr. McGuire"));
@@ -138,39 +133,24 @@ public class clueProject
 			}
 			
 			public static void playerOptions()
+			{
+				System.out.printf("%-30s %-30s %-30s\n", "Suspects","Locations","Weapons\n");
+				for (int i = 0; i<6; i++)
 				{
-				System.out.println("There are 6 suspects. They are:\n");
-				
-				for(int i = 0; i < mullenPeople.size(); i++)
-					{
-					System.out.println((i+1) + ". " + mullenPeople.get(i));
-					}
-				System.out.println("\nThere are 9 locations. They are:\n");
-				
-				for(int i = 0; i < mullenLocations.size(); i++)
-					{
-					System.out.println((i+1) + ". " + mullenLocations.get(i));
-					}
-				
-				System.out.println("\nThere are 6 weapons. They are:\n");
-				
-				for(int i = 0; i < weapons.size(); i++)
-					{
-					System.out.println((i+1) + ". " + weapons.get(i));
-					}
-				
+				System.out.printf("%-30s %-30s %-30s\n", (i+1) + ". " + mullenPeople.get(i),(i+1) + ". " + mullenLocations.get(i),(i+1) + ". " + weapons.get(i));
 				}
+			}
 			
 			public static void deal()
 			{
 				Collections.shuffle(allTogether);
 			
-				for(int i = allTogether.size()-1; i>=12; i--)
+				for(int i = allTogether.size()-1; i>=10; i--)
 				{
 					playerHand.add(new String(allTogether.get(0)));
 					allTogether.remove(0);
 				}	
-				for(int i = allTogether.size()-1; i>=6; i--)
+				for(int i = allTogether.size()-1; i>=5; i--)
 				{
 					computerHand2.add(new String(allTogether.get(0)));
 					allTogether.remove(0);
@@ -197,6 +177,18 @@ public class clueProject
 				System.out.println(playerHand.get(i));
 				}
 
+			}
+			
+			public static void userChoice()
+			{
+			System.out.println("\nPlease enter the number of the person you suspect, the number of the location\nin which you suspect the crime was committed, and the number of the weapon\nyou suspect was used, separated by commas.");
+			Scanner userInput = new Scanner(System.in);
+			String userDecision = userInput.nextLine();	
+		
+//			if (allTogether.get(i).equals() || allTogether.get(i).equals(confidentialPerson) || allTogether.get(i).equals(confidentialWeapon))
+//				{
+//				allTogether.remove(i);
+//				}		
 			}
 	}
 		
