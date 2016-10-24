@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.sun.org.apache.xpath.internal.operations.Equals;
+
 import java.util.Collections;
 
 public class clueProject
@@ -15,6 +18,9 @@ public class clueProject
 		static String confidentialPerson;
 		static String confidentialPlace;
 		static String confidentialWeapon;
+		static int suspectDecision;
+		static int locationDecision;
+		static int weaponDecision;
 		
 		
 		public static void main(String[] args)
@@ -31,6 +37,7 @@ public class clueProject
 			playerOptions();
 			getCards();
 			userChoice();
+			compareToComputer1();
 			//confidentialFileReveal();
 			}
 			
@@ -181,16 +188,51 @@ public class clueProject
 			
 			public static void userChoice()
 			{
-			
-			System.out.println("\nPlease enter the number of the person you suspect, the number of the location\nin which you suspect the crime was committed, and the number of the weapon\nyou suspect was used, separated by commas.");
+				
+			System.out.println("\nPlease enter the number of the person you suspect.");
 			Scanner userInput = new Scanner(System.in);
-			String userDecision = userInput.nextLine();	
+			suspectDecision = userInput.nextInt();	
 			
-		
-//			if (allTogether.get(i).equals() || allTogether.get(i).equals(confidentialPerson) || allTogether.get(i).equals(confidentialWeapon))
-//				{
-//				allTogether.remove(i);
-//				}		
+			System.out.println("Please enter the number of the location you suspect.");
+			Scanner userInput2 = new Scanner(System.in);
+			locationDecision = userInput.nextInt();
+			
+			System.out.println("Please enter the number of the weapon you suspect.");
+			Scanner userInput3 = new Scanner(System.in);
+			weaponDecision = userInput.nextInt();
+			
+			System.out.println("You chose " + mullenPeople.get(suspectDecision-1) + " in " + mullenLocations.get(locationDecision-1) + " with the " + weapons.get(weaponDecision-1) + ".");
+			
+			}
+			
+			public static void compareToComputer1()
+			{
+			for(int i = 0; i<5; i++)
+				{
+				if (mullenPeople.get(suspectDecision-1).equals(computerHand1.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand1.get(i)) || weapons.get(weaponDecision-1).equals(computerHand1.get(i)))
+						{
+						System.out.println("Player One has " + computerHand1.get(i) + ".");
+						}
+				else
+				{
+				}
+				}
+			
+			}
+			
+			public static void compareToComputer2()
+			{
+				for(int i = 0; i<5; i++)
+					{
+					if (mullenPeople.get(suspectDecision-1).equals(computerHand2.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand2.get(i)) || weapons.get(weaponDecision-1).equals(computerHand2.get(i)))
+							{
+							System.out.println("Player Two has " + computerHand2.get(i) + ".");
+							}
+					else 
+						{
+						}
+
+					}
 			}
 	}
 		
