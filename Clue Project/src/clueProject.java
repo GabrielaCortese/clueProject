@@ -23,6 +23,7 @@ public class clueProject
 		static int weaponDecision;
 		
 		
+		
 		public static void main(String[] args)
 			{
 			System.out.println("Welcome to Clue!\nThere are two other players.\n");
@@ -35,10 +36,11 @@ public class clueProject
 			removeConfidential();
 			deal();
 			playerOptions();
+			confidentialFileReveal();
 			getCards();
 			userChoice();
 			compareToComputer1();
-			//confidentialFileReveal();
+			
 			}
 			
 			public static void people()
@@ -55,6 +57,7 @@ public class clueProject
 			
 			confidentialPerson = mullenPeople.get(0);
 			
+			Collections.shuffle(mullenPeople);
 					
 			}
 			
@@ -72,7 +75,7 @@ public class clueProject
 			
 			confidentialPlace = mullenLocations.get(0);
 			
-			
+			Collections.shuffle(mullenLocations);
 			
 			}
 					
@@ -90,7 +93,7 @@ public class clueProject
 			
 			confidentialWeapon = weapons.get(0);
 			
-			
+			Collections.shuffle(weapons);
 				
 			}
 				
@@ -168,9 +171,9 @@ public class clueProject
 					computerHand1.add(new String(allTogether.get(0)));
 					allTogether.remove(0);
 				}
-			//	System.out.println(playerHand);
-			//	System.out.println(computerHand1);
-			//	System.out.println(computerHand2);
+				System.out.println(playerHand);
+				System.out.println(computerHand1);
+				System.out.println(computerHand2);
 			}
 			
 			public static void getCards()
@@ -212,24 +215,30 @@ public class clueProject
 				if (mullenPeople.get(suspectDecision-1).equals(computerHand1.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand1.get(i)) || weapons.get(weaponDecision-1).equals(computerHand1.get(i)))
 						{
 						System.out.println("Player One has " + computerHand1.get(i) + ".");
+						break;
 						}
-				else
-				{
+				
 				}
-				}
+			 
+				compareToComputer2();
+				
+				
 			
 			}
 			
 			public static void compareToComputer2()
 			{
+				System.out.println("inside 2");
 				for(int i = 0; i<5; i++)
 					{
 					if (mullenPeople.get(suspectDecision-1).equals(computerHand2.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand2.get(i)) || weapons.get(weaponDecision-1).equals(computerHand2.get(i)))
 							{
 							System.out.println("Player Two has " + computerHand2.get(i) + ".");
+							break;
 							}
 					else 
 						{
+						
 						}
 
 					}
