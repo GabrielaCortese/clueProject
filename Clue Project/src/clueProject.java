@@ -23,6 +23,8 @@ public class clueProject
 		static int weaponDecision;
 		static Computer computer1 = new Computer(computerHand1);
 		static Computer computer2 = new Computer(computerHand2);
+		static computerName comp1 = new computerName("Player One");
+		static computerName comp2 = new computerName("Player Two");
 		static boolean stillWantsToPlay;
 		
 		public static void main(String[] args)
@@ -40,7 +42,11 @@ public class clueProject
 			confidentialFileReveal();
 			getCards();
 			userChoice();
-			boolean isMatch = compareTo(computer1);
+			boolean isMatch = compareTo(computer1, comp1);
+			if (isMatch = false)
+			{
+			boolean isMatch1 = compareTo(computer2, comp2);
+			}
 			askAgain();
 			confidentialFileStuff();
 			}
@@ -210,46 +216,25 @@ public class clueProject
 			
 			}
 			
-			public static boolean compareTo(Computer computer1)
+			public static boolean compareTo(Computer computer1, computerName comp1)
 			{
 			
 			boolean isMatch = false;
-			ArrayList checkHand = computer1.getHand();
+			String name = computerName.getName();
+			ArrayList checkHand = Computer.getHand();
 			for(int i = 0; i<5; i++)
 			{
 			if (mullenPeople.get(suspectDecision-1).equals(checkHand.get(i)) || mullenLocations.get(locationDecision-1).equals(checkHand.get(i)) || weapons.get(weaponDecision-1).equals(checkHand.get(i)))
 					{
 					isMatch = true;
-					System.out.println("Player One has " + checkHand.get(i) + ".");
+					System.out.println(name + " has " + checkHand.get(i) + ".");
 					break;
+						}
 					}
-				
-			}
-			if (isMatch = false)
-			{
-			boolean isMatch2 = compareToTwo(computer2);
-			}
 			return isMatch;
 			}
 			
-			public static boolean compareToTwo(Computer computer2)
-			{
-			boolean isMatch2 = false;
 			
-			ArrayList checkHand = computer2.getHand();
-			for(int i = 0; i<5; i++)
-			{
-			if (mullenPeople.get(suspectDecision-1).equals(checkHand.get(i)) || mullenLocations.get(locationDecision-1).equals(checkHand.get(i)) || weapons.get(weaponDecision-1).equals(checkHand.get(i)))
-					{
-					isMatch2 = true;
-					System.out.println("Player Two has " + checkHand.get(i) + ".");
-					break;
-					}
-				
-			}
-			return isMatch2;
-
-			}
 	
 			public static void askAgain()
 			{
@@ -261,7 +246,7 @@ public class clueProject
 			if (userDecision == 1)
 			{
 			userChoice();
-			compareTo(computer1);
+			compareTo(computer1, comp1);
 			}
 			if (userDecision == 2)
 			{

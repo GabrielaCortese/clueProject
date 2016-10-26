@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Computer 
 {
-private ArrayList hand;
+private static ArrayList hand;
 
 public Computer(ArrayList hand) 
 {
@@ -10,7 +10,7 @@ public Computer(ArrayList hand)
 this.hand = hand;
 }
 
-public ArrayList getHand() {
+public static ArrayList getHand() {
 	return hand;
 }
 
