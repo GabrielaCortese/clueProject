@@ -21,11 +21,12 @@ public class clueProject
 		static int suspectDecision;
 		static int locationDecision;
 		static int weaponDecision;
-		
-		
+		static Computer computer1 = new Computer(computerHand1);
+		static Computer computer2 = new Computer(computerHand2);
+		static boolean stillWantsToPlay;
 		
 		public static void main(String[] args)
-			{
+				{
 			System.out.println("Welcome to Clue!\nThere are two other players.\n");
 			
 			
@@ -39,8 +40,9 @@ public class clueProject
 			confidentialFileReveal();
 			getCards();
 			userChoice();
-			compareToComputer1();
-			
+			boolean isMatch = compareTo(computer1);
+			askAgain();
+			confidentialFileStuff();
 			}
 			
 			public static void people()
@@ -175,7 +177,7 @@ public class clueProject
 				System.out.println(computerHand1);
 				System.out.println(computerHand2);
 			}
-			
+		
 			public static void getCards()
 			{
 				System.out.println("\nPlease press enter in order to recieve your cards.");
@@ -208,42 +210,98 @@ public class clueProject
 			
 			}
 			
-			public static void compareToComputer1()
+			public static boolean compareTo(Computer computer1)
 			{
+			
+			boolean isMatch = false;
+			ArrayList checkHand = computer1.getHand();
 			for(int i = 0; i<5; i++)
-				{
-				if (mullenPeople.get(suspectDecision-1).equals(computerHand1.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand1.get(i)) || weapons.get(weaponDecision-1).equals(computerHand1.get(i)))
-						{
-						System.out.println("Player One has " + computerHand1.get(i) + ".");
-						break;
-						}
-				
-				}
-			 
-				compareToComputer2();
-				
-				
-			
-			}
-			
-			public static void compareToComputer2()
 			{
-				System.out.println("inside 2");
-				for(int i = 0; i<5; i++)
+			if (mullenPeople.get(suspectDecision-1).equals(checkHand.get(i)) || mullenLocations.get(locationDecision-1).equals(checkHand.get(i)) || weapons.get(weaponDecision-1).equals(checkHand.get(i)))
 					{
-					if (mullenPeople.get(suspectDecision-1).equals(computerHand2.get(i)) || mullenLocations.get(locationDecision-1).equals(computerHand2.get(i)) || weapons.get(weaponDecision-1).equals(computerHand2.get(i)))
-							{
-							System.out.println("Player Two has " + computerHand2.get(i) + ".");
-							break;
-							}
-					else 
-						{
-						
-						}
-
+					isMatch = true;
+					System.out.println("Player One has " + checkHand.get(i) + ".");
+					break;
 					}
+				
 			}
-	}
+			if (isMatch = false)
+			{
+			boolean isMatch2 = compareToTwo(computer2);
+			}
+			return isMatch;
+			}
+			
+			public static boolean compareToTwo(Computer computer2)
+			{
+			boolean isMatch2 = false;
+			
+			ArrayList checkHand = computer2.getHand();
+			for(int i = 0; i<5; i++)
+			{
+			if (mullenPeople.get(suspectDecision-1).equals(checkHand.get(i)) || mullenLocations.get(locationDecision-1).equals(checkHand.get(i)) || weapons.get(weaponDecision-1).equals(checkHand.get(i)))
+					{
+					isMatch2 = true;
+					System.out.println("Player Two has " + checkHand.get(i) + ".");
+					break;
+					}
+				
+			}
+			return isMatch2;
+
+			}
+	
+			public static void askAgain()
+			{
+			while(stillWantsToPlay = true)
+			{
+			System.out.println("\nWould you like to ask again or make an accusation? Press 1 for asking again and 2 for making an accusation.");
+			Scanner userInput = new Scanner(System.in);
+			int userDecision = userInput.nextInt();	
+			if (userDecision == 1)
+			{
+			userChoice();
+			compareTo(computer1);
+			}
+			if (userDecision == 2)
+			{
+			System.out.println("Please make your accusation.");
+			stillWantsToPlay = false;
+			break;
+			}
+			}
+			}
+			
+			public static void confidentialFileStuff()
+			{
+				System.out.println("\nPlease enter the number of the person you suspect.");
+				Scanner userInput = new Scanner(System.in);
+				suspectDecision = userInput.nextInt();	
+				
+				System.out.println("Please enter the number of the location you suspect.");
+				Scanner userInput2 = new Scanner(System.in);
+				locationDecision = userInput.nextInt();
+				
+				System.out.println("Please enter the number of the weapon you suspect.");
+				Scanner userInput3 = new Scanner(System.in);
+				weaponDecision = userInput.nextInt();
+				
+				System.out.println("You have accused " + mullenPeople.get(suspectDecision-1) + " in " + mullenLocations.get(locationDecision-1) + " with the " + weapons.get(weaponDecision-1) + ".");
+				if (mullenPeople.get(suspectDecision-1).equals(confidentialPerson) && mullenLocations.get(locationDecision-1).equals(confidentialPlace) && weapons.get(weaponDecision-1).equals(confidentialWeapon))
+				{
+				System.out.println("You have won the game! Your guesses match the contents of the confidential file.");
+				}
+				else
+				{
+				System.out.println("You have guessed incorrectly.");
+				confidentialFileReveal();
+				}
+			}
+			}
+	
+	
+			
+
 		
 	
 
